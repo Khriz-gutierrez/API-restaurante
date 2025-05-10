@@ -3,33 +3,35 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 
 // Load env variables
-dotenv.config()
+dotenv.config();
 
-const app = express()
+const app = express();
 
+// Import routers
 import mesasRouter from './src/routes/mesasRoute.js';
 import pedidosRouter from './src/routes/pedidosRouter.js';
+import usuarioRouter from './src/routes/usuarioRouter.js'; 
+import ingredientesRouter from './src/routes/ingredientesRouter.js';
+import menuRouter from './src/routes/menuRouter.js';
+import historialPedidosRouter from './src/routes/historialPedidosRouter.js';
+import pedidoDetallesRouter from './src/routes/pedidoDetallesRouter.js';  // CORRECCIÓN: Asegúrate de importar este archivo
 
-app.use(express.json())
-app.use(express.urlencoded({ extended: true }))
-app.use(cors())
+// Middlewares
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
+// Routes
+app.use('/mesas', mesasRouter);
+app.use('/pedidos', pedidosRouter);  // Ruta para pedidos
+app.use('/pedidos/detalles', pedidoDetallesRouter);  // CORRECCIÓN: Añadir /detalles como ruta para los detalles de los pedidos
+app.use('/pedidos', historialPedidosRouter);
+app.use('/usuarios', usuarioRouter);
+app.use('/ingredientes', ingredientesRouter);
+app.use('/menu', menuRouter);
 
-//Usar las rutas
-app.use('/mesas', mesasRouter); // MESAS
-app.use('/pedidos', pedidosRouter); // PEDIDOS
-
-const port =
-    process.env.PORT || 3000
+const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
-    console.log(`Servidor corriendo en el puerto ${port}`)
-})
-
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-console.log('Directorio actual:', __dirname);
+    console.log(`Servidor corriendo en el puerto ${port}`);
+});
