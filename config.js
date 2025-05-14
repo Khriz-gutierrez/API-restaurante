@@ -5,38 +5,44 @@ import dotenv from 'dotenv';
 // Load env variables
 dotenv.config();
 
-// Cambia el nombre de config a pool para consistencia
 const pool = new Pool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
     port: Number(process.env.DB_PORT),
-    ssl: false, // ← Esto es lo más importante
+    // Configuración SSL CORRECTA para Render:
+    ssl: {
+        rejectUnauthorized: false // ← Esto es crucial
+    },
     max: 10,
     idleTimeoutMillis: 30000,
-    connectionTimeoutMillis: 5000
-  });
+    connectionTimeoutMillis: 5000,
+    // Añade esto para mejor manejo de conexiones:
+    allowExitOnIdle: true
+});
 
-// Test the connection
-pool.connect((err, client, release) => {
+// Test the connection (versión mejorada)
+pool.query('SELECT NOW()', (err, res) => {
     if (err) {
-        console.error('ERROR: ', err);
+        console.error('❌ Error de conexión a PostgreSQL:', {
+            code: err.code,
+            message: err.message
+        });
+        
+        // Errores comunes específicos
         if (err.code === 'ECONNREFUSED') {
-            console.error('La conexión a la base de datos fue rechazada.');
+            console.error('Solución: Verifica que la BD esté activa en Render y el puerto sea 5432');
         }
-        if (err.code === 'ETIMEDOUT') {
-            console.error('Tiempo de conexión a la base de datos agotado.');
+        else if (err.code === 'ETIMEDOUT') {
+            console.error('Solución: Aumenta connectionTimeoutMillis o verifica tu conexión a internet');
         }
-        if (err.code === 'PROTOCOL_CONNECTION_LOST') {
-            console.error('La conexión a la base de datos fue cerrada.');
+        else if (err.code === '28P01') {
+            console.error('Solución: Revisa el usuario y contraseña en el .env');
         }
-    }
-    if (client) {
-        release();
-        console.log('PostgreSQL connected successfully');
+    } else {
+        console.log('✅ PostgreSQL conectado correctamente. Hora actual:', res.rows[0].now);
     }
 });
 
-// Exporta pool en lugar de config
 export { pool };

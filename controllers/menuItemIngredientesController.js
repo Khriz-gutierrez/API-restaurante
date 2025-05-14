@@ -3,7 +3,7 @@ import {
     agregarIngredienteMenuItemQuery,
     actualizarIngredienteMenuItemQuery,
     eliminarIngredienteMenuItemQuery
-} from '../queries/menuItemIngredientesQuery.js';
+} from '../db/menuItemIngredientesQuery.js';
 
 const listarIngredientesMenuItem = async (req, res) => {
     try {
