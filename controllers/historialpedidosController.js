@@ -1,9 +1,5 @@
-// import { listarHistorialPedidoQuery } from '../db/historialPedidosQuery.js'; 
+// Controlador temporalmente desactivado
 
-const listarHistorialPedido = async (req, res) => {
-    res.status(200).json({ mensaje: 'Ruta desactivada temporalmente' });
-};
-
-export {
-    listarHistorialPedido
+export const listarHistorialPedido = (req, res) => {
+  res.status(200).json({ mensaje: 'Ruta de historial desactivada temporalmente' });
 };
