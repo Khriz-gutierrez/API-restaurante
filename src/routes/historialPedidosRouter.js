@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { listarHistorialPedido } from '../../controllers/historialPedidosController.js';  // Corregir la ruta
+import { listarHistorialPedido } from '../../controllers/historialPedidosController.js';
 
 const router = Router();
 
