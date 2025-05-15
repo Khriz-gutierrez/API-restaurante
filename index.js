@@ -1,24 +1,20 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import { pool } from './config.js'; // Ruta corregida
 
-// Importa la configuración de PostgreSQL (ruta corregida)
-import { pool } from './config.js';
-
-// Configuración inicial
+// Configurar variables de entorno
 dotenv.config();
+
+// Crear instancia de la app
 const app = express();
 
-// ======================
-// 1. Middlewares esenciales
-// ======================
+// Middlewares
 app.use(cors());
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
-// ======================
-// 2. Health Checks (Críticos para Render)
-// ======================
+// Rutas de prueba y salud
 app.get('/', (req, res) => {
   res.status(200).json({
     status: 'OK',
@@ -43,9 +39,7 @@ app.get('/health', async (req, res) => {
   }
 });
 
-// ======================
-// 3. Importación de routers
-// ======================
+// Rutas principales
 import mesasRouter from './src/routes/mesasRoute.js';
 import pedidosRouter from './src/routes/pedidosRouter.js';
 import usuarioRouter from './src/routes/usuarioRouter.js';
@@ -54,10 +48,8 @@ import menuRouter from './src/routes/menuRouter.js';
 import historialPedidosRouter from './src/routes/historialPedidosRouter.js';
 import pedidoDetallesRouter from './src/routes/pedidoDetallesRouter.js';
 
-// ======================
-// 4. Registro de rutas
-// ======================
 const API_PREFIX = '/api/v1';
+
 app.use(`${API_PREFIX}/mesas`, mesasRouter);
 app.use(`${API_PREFIX}/pedidos`, pedidosRouter);
 app.use(`${API_PREFIX}/pedidos/detalles`, pedidoDetallesRouter);
@@ -66,23 +58,20 @@ app.use(`${API_PREFIX}/usuarios`, usuarioRouter);
 app.use(`${API_PREFIX}/ingredientes`, ingredientesRouter);
 app.use(`${API_PREFIX}/menu`, menuRouter);
 
-// ======================
-// 5. Manejo de errores
-// ======================
+// Rutas no encontradas
 app.use((req, res) => {
   res.status(404).json({ error: 'Ruta no encontrada' });
 });
 
+// Manejo global de errores
 app.use((err, req, res, next) => {
   console.error('Error:', err.message);
   res.status(500).json({ error: 'Error interno del servidor' });
 });
 
-// ======================
-// 6. Inicio del servidor (Configuración para Render)
-// ======================
-const PORT = process.env.PORT || 10000; // Render usa puerto 10000
-const server = app.listen(PORT, () => {
+// Inicio del servidor
+const PORT = process.env.PORT || 10000;
+const server = app.listen(PORT, '0.0.0.0', () => {
   console.log(`
   ================================
   🚀 Servidor iniciado en puerto ${PORT}
@@ -92,5 +81,7 @@ const server = app.listen(PORT, () => {
   `);
 });
 
-// Configuración para evitar timeouts en Render
+// Configuraciones extra para Render
 server.timeout = 60000;
+server.keepAliveTimeout = 120000;
+server.headersTimeout = 120000;
