@@ -1,8 +1,10 @@
 import { Router } from 'express';
-import { listarHistorialPedido } from '../../controllers/historialPedidosController.js';
-
 const router = Router();
 
-router.get('/:id_pedido/historial', listarHistorialPedido);
+// ❌ Elimina o comenta esta línea
+// import { listarHistorialPedido } from '../../controllers/historialPedidosController.js';
+
+// ❌ Comenta esta ruta para evitar que Render la intente usar
+// router.get('/:id_pedido/historial', listarHistorialPedido);
 
 export default router;
