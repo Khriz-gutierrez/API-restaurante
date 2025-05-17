@@ -105,17 +105,6 @@ POST /api/pedido_detalles — Detalles de pedidos
 
 GET /api/usuarios — Listar usuarios
 
-Nota: Las rutas pueden variar según el archivo y configuración de cada router.
-
-☁️ Despliegue en Render
-Este proyecto está desplegado en Render. Asegúrate de:
-
-Configurar las variables de entorno en el panel de Render.
-
-Usar el script adecuado en package.json para producción ("start": "node index.js" si aplica).
-
-Conectar correctamente la base de datos PostgreSQL proporcionada por Render.
-
 🧑‍💻 Contribuciones
 Si deseas colaborar o reportar un error, puedes crear un pull request o abrir un issue en este repositorio.
 
