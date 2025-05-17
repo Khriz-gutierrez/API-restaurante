@@ -46,6 +46,7 @@ import usuarioRouter from './src/routes/usuarioRouter.js';
 import ingredientesRouter from './src/routes/ingredientesRouter.js';
 import menuRouter from './src/routes/menuRouter.js';
 import pedidoDetallesRouter from './src/routes/pedidoDetallesRouter.js';
+import historialPedidosRouter from './src/routes/historialPedidosRouter.js';
 
 const API_PREFIX = '/api/v1';
 
@@ -55,6 +56,8 @@ app.use(`${API_PREFIX}/pedidos/detalles`, pedidoDetallesRouter);
 app.use(`${API_PREFIX}/usuarios`, usuarioRouter);
 app.use(`${API_PREFIX}/ingredientes`, ingredientesRouter);
 app.use(`${API_PREFIX}/menu`, menuRouter);
+app.use(`${API_PREFIX}/historial/pedidos`, historialPedidosRouter);
+
 
 // Rutas no encontradas
 app.use((req, res) => {

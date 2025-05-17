@@ -1,0 +1,8 @@
+import { Router } from 'express';
+import { listarHistorialPedido } from '../../controllers/historialPedidosController.js';
+
+const router = Router();
+
+router.get('/:id_pedido/historial', listarHistorialPedido);
+
+export default router;
