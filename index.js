@@ -40,13 +40,14 @@ app.get('/health', async (req, res) => {
 });
 
 // Rutas principales
-import mesasRouter from './src/routes/mesasRoute.js';
-import pedidosRouter from './src/routes/pedidosRouter.js';
-import usuarioRouter from './src/routes/usuarioRouter.js';
-import ingredientesRouter from './src/routes/ingredientesRouter.js';
-import menuRouter from './src/routes/menuRouter.js';
-import pedidoDetallesRouter from './src/routes/pedidoDetallesRouter.js';
-import historialPedidosRouter from './src/routes/historialPedidosRouter.js';
+import mesasRouter from './routes/mesasRoute.js';
+import pedidosRouter from './routes/pedidosRouter.js';
+import usuarioRouter from './routes/usuarioRouter.js';
+import ingredientesRouter from './routes/ingredientesRouter.js';
+import menuRouter from './routes/menuRouter.js';
+import pedidoDetallesRouter from './routes/pedidoDetallesRouter.js';
+import historialPedidosRouter from './routes/historialPedidosRouter.js';
+
 
 const API_PREFIX = '/api/v1';
 

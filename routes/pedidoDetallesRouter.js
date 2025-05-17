@@ -3,7 +3,7 @@ import {
   obtenerDetalles,
   crearPedidoDetalles,
   eliminarPedidoDetalles
-} from '../../controllers/pedidoDetallesController.js';
+} from '../controllers/pedidoDetallesController.js';
 
 const router = Router();
 

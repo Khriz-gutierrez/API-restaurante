@@ -6,7 +6,7 @@ import {
     actualizarUsuario,
     eliminarUsuario,
     loginUsuario
-} from '../../controllers/usuariosController.js';
+} from '../controllers/usuariosController.js';
 
 const usuarioRouter = Router();
 

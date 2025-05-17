@@ -6,7 +6,7 @@ import {
     crearMesa,
     actualizarMesa,
     eliminarMesa
-} from '../../controllers/mesasController.js';
+} from '../controllers/mesasController.js';
 
 const mesaRouter = Router();
 

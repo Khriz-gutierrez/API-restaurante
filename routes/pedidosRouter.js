@@ -6,7 +6,7 @@ import {
     actualizarPedido,
     cambiarEstadoPedido,
     eliminarPedido
-} from '../../controllers/pedidosController.js';
+} from '../controllers/pedidosController.js';
 
 const router = Router();
 

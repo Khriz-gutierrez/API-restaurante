@@ -5,7 +5,7 @@ import {
     crearMenuItem,
     actualizarMenuItem,
     eliminarMenuItem
-} from '../../controllers/menuController.js';
+} from '../controllers/menuController.js';
 
 const router = Router();
 

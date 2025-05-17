@@ -5,7 +5,7 @@ import {
     crearIngrediente,
     actualizarIngrediente,
     eliminarIngrediente
-} from '../../controllers/ingredientesController.js';
+} from '../controllers/ingredientesController.js';
 
 const router = Router();
 

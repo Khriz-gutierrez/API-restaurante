@@ -1,4 +1,4 @@
-import { listarHistorialPedidoQuery } from '../db/historialPedidosQuery.js';
+import { listarHistorialPedidoQuery } from '../db/historialpedidosQuery.js';
 
 const listarHistorialPedido = async (req, res) => {
     try {

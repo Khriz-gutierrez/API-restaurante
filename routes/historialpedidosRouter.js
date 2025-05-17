@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { listarHistorialPedido } from '../controllers/historialPedidosController.js';
+import { listarHistorialPedido } from '../controllers/historialpedidosController.js';
 
 const router = Router();
 
